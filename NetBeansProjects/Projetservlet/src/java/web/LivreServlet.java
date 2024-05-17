@@ -100,15 +100,14 @@ private static final long serialVersionUID = 1L;
 		dispatcher.forward(request, response);
 	}
         
-        private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		Livre existingUser = livreDAO.selectLivre(id);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("livre-form.jsp");
-		request.setAttribute("livre", existingUser);
-		dispatcher.forward(request, response);
-
-	}
+   private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+    int id = Integer.parseInt(request.getParameter("id"));
+    System.out.println("Edit Form - ID: " + id); // Log ID parameter
+    Livre existingUser = livreDAO.selectLivre(id);
+    RequestDispatcher dispatcher = request.getRequestDispatcher("livre-form.jsp");
+    request.setAttribute("livre", existingUser);
+    dispatcher.forward(request, response);
+}
     
     private void insertLivre(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
@@ -132,13 +131,13 @@ private static final long serialVersionUID = 1L;
 		response.sendRedirect("list");
 	}
     
-    private void deleteLivre(HttpServletRequest request, HttpServletResponse response) 
-			throws SQLException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		livreDAO.deleteLivre(id);
-		response.sendRedirect("list");
+    private void deleteLivre(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+    int id = Integer.parseInt(request.getParameter("id"));
+    System.out.println("Delete Action - ID: " + id); // Log ID parameter
+    livreDAO.deleteLivre(id);
+    response.sendRedirect("list");
+}
 
-	}
     
     
 
