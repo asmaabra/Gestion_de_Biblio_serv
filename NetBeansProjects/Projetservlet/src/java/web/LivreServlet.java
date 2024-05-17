@@ -102,7 +102,7 @@ private static final long serialVersionUID = 1L;
         
         private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("idLivre"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		Livre existingUser = livreDAO.selectLivre(id);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("livre-form.jsp");
 		request.setAttribute("livre", existingUser);
@@ -122,7 +122,7 @@ private static final long serialVersionUID = 1L;
     
     private void updateLivre(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
-		int id = Integer.parseInt(request.getParameter("idLivre"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		String titre = request.getParameter("titre");
 		String auteur = request.getParameter("auteur");
                 String disponibleParam = request.getParameter("disponible");
@@ -134,7 +134,7 @@ private static final long serialVersionUID = 1L;
     
     private void deleteLivre(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
-		int id = Integer.parseInt(request.getParameter("idLivre"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		livreDAO.deleteLivre(id);
 		response.sendRedirect("list");
 
